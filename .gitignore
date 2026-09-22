@@ -1,1 +1,96 @@
+# =========================
+# Visual Studio
+# =========================
+
 .vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# =========================
+# .NET / Build Output
+# =========================
+
+**/bin/
+**/obj/
+**/out/
+
+# =========================
+# NuGet
+# =========================
+
+packages/
+*.nupkg
+*.snupkg
+
+# NuGet package cache
+.nuget/
+
+# =========================
+# Logs
+# =========================
+
+*.log
+logs/
+
+# =========================
+# Test Results
+# =========================
+
+TestResults/
+**/TestResults/
+*.trx
+
+# =========================
+# Code Coverage
+# =========================
+
+coverage/
+*.coverage
+*.coveragexml
+
+# =========================
+# ASP.NET / .NET
+# =========================
+
+appsettings.Local.json
+appsettings.*.Local.json
+
+# =========================
+# Publish Output
+# =========================
+
+publish/
+**/publish/
+*.Publish.xml
+
+# =========================
+# Temporary Files
+# =========================
+
+*.tmp
+*.temp
+*.bak
+*.swp
+*.cache
+
+# =========================
+# OS Files
+# =========================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# JetBrains Rider
+# =========================
+
+.idea/
+
+# =========================
+# VS Code
+# =========================
+
+.vscode/
