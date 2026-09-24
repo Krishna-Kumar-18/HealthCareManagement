@@ -93,6 +93,10 @@ desktop.ini
 # VS Code
 # =========================
 
+bin/
+obj/
+.vs/
+
 .vscode/
 
 
