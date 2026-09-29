@@ -1,7 +1,9 @@
 ﻿using BCrypt.Net;
 using HealthCareManagement.Data;
 using HealthCareManagement.DTOs.AuthDTO;
+using HealthCareManagement.Helpers;
 using HealthCareManagement.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,10 +17,13 @@ namespace HealthCareManagement.Controllers
     {
         private readonly AppDbContext _dbcontext;
 
+        private readonly JwtHelper _jwtHelper;
 
-        public AuthController(AppDbContext dbcontext)
+
+        public AuthController(AppDbContext dbcontext, JwtHelper jwtHelper)
         {
             _dbcontext = dbcontext;
+            _jwtHelper = jwtHelper;
         }
 
 
@@ -120,15 +125,20 @@ namespace HealthCareManagement.Controllers
                 Email = user.Email,
                 Role = role.RoleName
             });
-
         }
+
+
+
+
 
 
 
         [HttpPost("login")]
         public  async Task<ActionResult> Login(LoginDTO loginDto)
         {
-            var user = await _dbcontext.Users.FirstOrDefaultAsync(u => u.Email == loginDto.Email);
+            var user = await _dbcontext.Users
+                .Include(u => u.Role)
+                .FirstOrDefaultAsync(u => u.Email == loginDto.Email);
 
             if(user == null)
             {
@@ -140,8 +150,20 @@ namespace HealthCareManagement.Controllers
                 return BadRequest("Invalid email or password");
             }
 
-            return Ok("Login successfully");
+            string token = _jwtHelper.GenerateToken(user);
+
+            return Ok(token);
         }
+
+
+        [Authorize]
+        [HttpGet("test")]
+        public string Test()
+        {
+            return "It is working";
+        }
+
+
 
 
         private string HashedPassword(string password)
