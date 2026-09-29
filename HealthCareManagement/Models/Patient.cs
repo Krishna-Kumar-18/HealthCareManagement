@@ -4,7 +4,7 @@
     {
         public int PatientId { get; set; }
 
-        public string DateOfBirth { get; set; } = string.Empty;
+        public DateTime DateOfBirth { get; set; }
 
         public string Gender { get; set; } = string.Empty;
 

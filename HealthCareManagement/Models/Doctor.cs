@@ -6,7 +6,7 @@
 
         public string Specialization { get; set; } = string.Empty;
 
-        public string Experience { get; set; } = string.Empty;
+        public int Experience { get; set; }
 
 
 
