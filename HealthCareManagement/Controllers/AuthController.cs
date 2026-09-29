@@ -23,8 +23,6 @@ namespace HealthCareManagement.Controllers
 
 
 
-
-
         [HttpPost("register")]
         public async Task<ActionResult> Register(RegisterDTO registerDto)
         {
@@ -127,9 +125,34 @@ namespace HealthCareManagement.Controllers
 
 
 
+        [HttpPost("login")]
+        public  async Task<ActionResult> Login(LoginDTO loginDto)
+        {
+            var user = await _dbcontext.Users.FirstOrDefaultAsync(u => u.Email == loginDto.Email);
+
+            if(user == null)
+            {
+                return BadRequest("Invalid email or password");
+            }
+
+            if(!VerifyPassword(loginDto.Password, user.HashedPassword))
+            {
+                return BadRequest("Invalid email or password");
+            }
+
+            return Ok("Login successfully");
+        }
+
+
         private string HashedPassword(string password)
         {
             return BCrypt.Net.BCrypt.HashPassword(password);
+        }
+
+
+        private bool VerifyPassword(string password, string hashedPassword)
+        {
+            return BCrypt.Net.BCrypt.Verify(password, hashedPassword);
         }
     }
 }
