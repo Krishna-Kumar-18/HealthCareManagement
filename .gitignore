@@ -57,6 +57,10 @@ coverage/
 appsettings.Local.json
 appsettings.*.Local.json
 
+# Keep production/local secrets out of Git
+# Remove this line if appsettings.json contains only safe, non-secret settings
+appsettings.json
+
 # =========================
 # Publish Output
 # =========================
@@ -93,11 +97,20 @@ desktop.ini
 # VS Code
 # =========================
 
-bin/
-obj/
-.vs/
-
 .vscode/
 
+# =========================
+# Node / React / Vite
+# =========================
 
-appsettings.json
+node_modules/
+dist/
+.vite/
+
+# =========================
+# Frontend Environment Files
+# =========================
+
+.env
+.env.local
+.env.*.local
