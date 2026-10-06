@@ -5,4 +5,8 @@ export const login = (email, password) => {
         email: email,
         password: password
     })
+};  
+
+export const register = (registerData) => {
+    return api.post("/Auth/register", registerData)
 };

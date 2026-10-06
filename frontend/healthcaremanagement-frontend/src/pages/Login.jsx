@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { login } from "../services/authApi";
+import { Link } from 'react-router-dom';
+import Register from "./Register";
 
 function Login() {
 
@@ -333,12 +335,13 @@ function Login() {
 
                         Don't have an account?
 
-                        <a
-                            href="#"
-                            className="ml-1 font-semibold text-emerald-600 hover:text-emerald-700"
-                        >
+                        <Link
+                            to="/register"
+                            className="ml-1 font-semibold text-emerald-600 hover:text-emerald-700">
+
                             Create account
-                        </a>
+                        </Link>
+                        
 
                     </div>
 
